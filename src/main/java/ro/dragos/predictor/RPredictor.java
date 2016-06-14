@@ -23,14 +23,14 @@ public class RPredictor {
 
 	public boolean executeRScript(String website) {
 		try {
-			String modelFileName = "w" + website + ".csv";
-			String testFileName = "w" + website + "test.csv";
-			String predictionsFileName = "w" + website + "pred.csv";
+			String modelFileName = website + ".csv";
+			String testFileName = website + "test.csv";
+			String predictionsFileName = website + "pred.csv";
 
 			String pathToFile = getClass().getClassLoader().getResource(SCRIPT_NAME).getFile();
 			File file = new File(pathToFile);
 
-			String pathToModel = file.getParent() + File.separator + "websites" + File.separator + "w" + website
+			String pathToModel = file.getParent() + File.separator + "websites" + File.separator + website
 					+ File.separator;
 			pathToModel = pathToModel.replace("\\", "/");
 			Process child = Runtime.getRuntime().exec(SCRIPT_EXEC_PATH + " " + file.getAbsolutePath() + " "

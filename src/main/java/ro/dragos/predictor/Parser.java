@@ -15,7 +15,7 @@ public class Parser {
 
 	private Parser() {
 	}
-	
+
 	public static Parser getInstance() {
 		if (parser == null) {
 			parser = new Parser();
@@ -24,21 +24,15 @@ public class Parser {
 	}
 
 	public List<Pair<Integer, Integer>> parseTrainModel(String fileName) {
-		String modelName = "w" + fileName + ".csv";
-		String pathToTrainFolder = "";
-		try
-		{
-			String pathToFile = getClass().getClassLoader().getResource(RPredictor.SCRIPT_NAME).getFile();
-			File file = new File(pathToFile);
-
-			pathToTrainFolder = file.getParent() + File.separator + "websites" + File.separator + "w" + fileName
-					+ File.separator;
-		} catch(Exception e)
-		{
-			//ignore exception
-		}
-		
 		List<Pair<Integer, Integer>> parsedCsvItems = new ArrayList<Pair<Integer, Integer>>();
+		
+		String modelName = fileName + ".csv";
+		String pathToTrainFolder = getClass().getClassLoader()
+				.getResource("websites" + File.separator + fileName + File.separator).getFile();
+
+		if(pathToTrainFolder == null || pathToTrainFolder.trim().isEmpty())
+			return parsedCsvItems;
+		
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
@@ -70,23 +64,17 @@ public class Parser {
 		}
 		return parsedCsvItems;
 	}
-	
-	public List<Pair<Integer, Integer>> parseTestModel(String fileName) {
-		String modelName = "w" + fileName + "test.csv";
-		String pathToTrainFolder = "";
-		try
-		{
-			String pathToFile = getClass().getClassLoader().getResource(RPredictor.SCRIPT_NAME).getFile();
-			File file = new File(pathToFile);
 
-			pathToTrainFolder = file.getParent() + File.separator + "websites" + File.separator + "w" + fileName
-					+ File.separator;
-		} catch(Exception e)
-		{
-			//ignore exception
-		}
-		
+	public List<Pair<Integer, Integer>> parseTestModel(String fileName) {
 		List<Pair<Integer, Integer>> parsedCsvItems = new ArrayList<Pair<Integer, Integer>>();
+		
+		String modelName = fileName + "test.csv";
+		String pathToTrainFolder = getClass().getClassLoader()
+				.getResource("websites" + File.separator + fileName + File.separator).getFile();
+
+		if(pathToTrainFolder == null || pathToTrainFolder.trim().isEmpty())
+			return parsedCsvItems;
+		
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
@@ -120,20 +108,14 @@ public class Parser {
 	}
 
 	public List<Integer> parsePredictedValues(String fileName) {
-		String parsedName = "w" + fileName + "pred.csv";
-		String pathToParsedtFolder = "";
-		try
-		{
-			String pathToFile = getClass().getClassLoader().getResource(RPredictor.SCRIPT_NAME).getFile();
-			File file = new File(pathToFile);
-
-			pathToParsedtFolder = file.getParent() + File.separator + "websites" + File.separator + "w" + fileName
-					+ File.separator;
-		} catch(Exception e)
-		{
-		}
-		
 		List<Integer> parsedCsvItems = new ArrayList<Integer>();
+		
+		String parsedName = fileName + "pred.csv";
+		String pathToParsedtFolder = getClass().getClassLoader()
+				.getResource("websites" + File.separator + fileName + File.separator).getFile();
+
+		if(pathToParsedtFolder == null || pathToParsedtFolder.trim().isEmpty())
+			return parsedCsvItems; 
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
@@ -171,6 +153,6 @@ public class Parser {
 		Parser obj = Parser.getInstance();
 		System.out.println(obj.parseTrainModel("41"));
 		System.out.println(obj.parseTestModel("41"));
-//		System.out.println(obj.parsePredictedValues("41"));
+		// System.out.println(obj.parsePredictedValues("41"));
 	}
 }
