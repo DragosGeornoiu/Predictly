@@ -1,0 +1,177 @@
+@import url(https://fonts.googleapis.com/css?family=Lato);
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.3);
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #aaa;
+}
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: #333;
+  font-size: 16px;
+}
+
+mark,
+.mark {
+  padding: .2em .4em;
+  background-color: #DCDCDC;
+}
+
+hr, .hr {
+  margin: 10px 0;
+  border: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 0 rgba(255, 255, 255, 0.1);
+}
+hr--xl, .hr--xl {
+  margin: 30px 0;
+}
+
+.h0 {
+  font-size: 48px;
+  line-height: 2;
+}
+
+a {
+  text-decoration: none;
+}
+a:hover {
+  text-decoration: underline;
+}
+a img {
+  border: 0;
+}
+
+/*
+*  Header
+*/
+.mainHeader {
+  background: #2C3E50;
+  color: #fff;
+  padding: 8em 0;
+  text-align: center;
+  margin-bottom: 2em;
+}
+
+.awrLogo {
+  display: inline-block;
+  margin: 1em;
+}
+.awrLogo > svg {
+  fill: #ECF0F1;
+  transition: .1s ease fill;
+  max-width: 100%;
+}
+.awrLogo:hover > svg {
+  fill: #fff;
+}
+
+/*
+*  Sections
+*/
+.sectionLead,
+.sectionContent {
+  padding: 3% 5%;
+}
+
+.sectionLead {
+  background: #f5f5f5;
+}
+.sectionLead__head > a {
+  color: #E74C3C;
+}
+.sectionLead__head > a:hover {
+  text-decoration: none;
+}
+.sectionLead__text {
+  font-size: 1.2em;
+}
+
+.sectionContent {
+  padding-bottom: 6%;
+}
+
+/*
+*  Footer
+*/
+.mainFooter {
+  border-top: 1px dashed #ccc;
+  padding: 1em;
+  text-align: center;
+  margin-top: 2em;
+}
+
+/*
+*  Sidebar
+*/
+.sideNav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.sideNav .active {
+  font-weight: bold;
+  color: #2a2a2b;
+  border-left: 2px solid #E74C3C;
+}
+.sideNav .nav > li > a {
+  color: #333;
+}
+
+.affix {
+  top: 20px;
+}
+
+.bar {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  margin-right: 20px;
+}
+.bar--group {
+  margin: 20px 0;
+}
+.bar--secondary {
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+.bar__label {
+  text-align: left;
+  font-weight: bold;
+}
+.bar__label--secondary {
+  font-size: .9em;
+  font-weight: normal;
+}
+.bar__value {
+  height: 20px;
+  background-color: #2980B9;
+}
+.bar__value--secondary {
+  background-color: #8DC4E8;
+  height: 15px;
+  margin: 2px 0;
+}
+.bar__pct {
+  font-size: .85em;
+  line-height: 20px;
+  padding: 0 0 0 5px;
+  margin-left: 100%;
+}
+
+@media (min-width: 992px) {
+  .bar {
+    margin-right: -15px;
+  }
+
+  .bar__label {
+    text-align: right;
+  }
+}

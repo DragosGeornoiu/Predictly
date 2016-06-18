@@ -45,13 +45,12 @@ public class PredictlyRestService {
 		JSONObject jsonTest = new JSONObject();
 		JSONObject jsonPredictions = new JSONObject();
 		for (int i = 0; i < testData.size(); i++) {
-			jsonTest.put(testData.get(i).getFirst() + "", testData.get(i).getSecond() + "");
+			jsonModel.put(testData.get(i).getFirst() + "", testData.get(i).getSecond() + "");
 			jsonPredictions.put(testData.get(i).getFirst() + "", predictions.get(i) + "");
 		}
 
 		JSONObject json = new JSONObject();
 		json.put("model", jsonModel);
-		json.put("test", jsonTest);
 		json.put("predictions", jsonPredictions);
 
 		String jsonReturned = json.toString() + "";

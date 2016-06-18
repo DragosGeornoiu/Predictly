@@ -1,0 +1,21 @@
+$gutter: 20px;
+
+// map-get($socialColors, twitter)
+$socialColors: (
+  twitter: #55acee,
+  facebook: #3b5998,
+  googleplus: #dc4e41,
+  pinterest: #bd081c,
+  linkedin: #0077b5
+);
+
+// map-get($themeColors, twitter)
+// https://color.adobe.com/Flat-UI-color-theme-2469224/
+$themeColors: (
+  black: #333,
+  deepBlue: #2C3E50,
+  hotRed: #E74C3C,
+  lightGray: #ECF0F1,
+  lightBlue: #8DC4E8,
+  darkBlue: #2980B9
+);

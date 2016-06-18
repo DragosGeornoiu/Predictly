@@ -1,0 +1,153 @@
+// Debug purposes
+//* {outline: 1px solid red}
+
+@import url(https://fonts.googleapis.com/css?family=Lato);
+
+body {
+  font-family: 'Lato', sans-serif;
+  color: map-get($themeColors, black);
+  font-size: 16px;
+}
+
+mark,
+.mark {
+  padding: .2em .4em;
+  background-color: #DCDCDC;
+}
+
+hr, .hr {
+  margin: $gutter/2 0;
+  border: 0;
+  border-top: 1px solid rgba(0,0,0,.2);
+  box-shadow: 0 2px 0 rgba(255,255,255,.1);
+
+  &--xl {
+    margin: $gutter*1.5 0;
+  }
+}
+
+.h0 {
+  font-size: 64px;
+  line-height: 1.5;
+}
+
+a {
+  text-decoration: none;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  img {
+    border: 0;
+  }
+}
+
+/*
+*  Header
+*/
+.mainHeader {
+  background: map-get($themeColors, hotRed);
+  color: #fff;
+  padding: 8em 0;
+  text-align: center;
+  margin-bottom: 2em;
+  position: relative;
+}
+
+.mainHeadline {
+
+  &__secondary {
+    display: table;
+    margin: auto;
+    color: rgba(255,255,255,.4);
+    letter-spacing: 2px;
+  }
+}
+
+/*
+*  Sections
+*/
+
+.sectionLead,
+.sectionContent {
+  padding: 3% 5%;
+}
+
+.sectionLead {
+  background: map-get($themeColors, lightGray);
+
+  &__head {
+
+    > a {
+      color: map-get($themeColors, hotRed);
+
+      &::before {
+        content: '#';
+      }
+
+      &:hover {
+        text-decoration: none;
+      }
+    }
+
+  }
+
+  &__text {
+    font-size: 1.2em;
+  }
+}
+
+.sectionContent {
+  padding-bottom: 6%;
+}
+
+/*
+*  Footer
+*/
+
+.mainFooter {
+  padding: 2em 0;
+  margin-top: 2em;
+  color: #fff;
+  background: map-get($themeColors, deepBlue);
+}
+
+.awrLogo {
+  display: inline-block;
+
+  > svg {
+    fill: map-get($themeColors, lightGray);
+    transition: .1s ease fill;
+    max-width: 100%;
+  }
+
+  &:hover > svg {
+    fill: #fff;
+  }
+}
+
+/*
+*  Sidebar
+*/
+
+.sideNav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  .active {
+    font-weight: bold;
+    color: #2a2a2b;
+    border-left: 2px solid map-get($themeColors, hotRed);
+  }
+
+  .nav > li > a {
+    color: map-get($themeColors, black);
+    padding: 8px 15px;
+  }
+}
+
+.affix {
+  top: 20px;
+}
