@@ -7,6 +7,8 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.QueryParam;
+import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 
 import org.json.JSONArray;
@@ -21,12 +23,12 @@ public class PredictlyRestService {
 	@Path("/predicted/{website}")
 	@GET
 	@Produces("application/json")
-	public Response getPredictedValues(@PathParam("website") String website) throws JSONException {
+	public Response getPredictedValues(@PathParam("website") String website, @QueryParam("callback") String callback) throws JSONException {
 		RPredictor predictor = RPredictor.getInstance();
 
 		boolean isScriptExecuted = predictor.executeRScript(website);
 		if (isScriptExecuted == false) {
-			String result = "@Produces(\"application/json\")" + "{\"message\" : \"Failed executing script\"}";
+			String result = "{\"message\" : \"Failed executing script\"}";
 			return Response.status(200).entity(result).build();
 		}
 
@@ -52,14 +54,19 @@ public class PredictlyRestService {
 		json.put("test", jsonTest);
 		json.put("predictions", jsonPredictions);
 
-		String result = "@Produces(\"application/json\")" + json;
-		return Response.status(200).entity(result).build();
+		String jsonReturned = json.toString() + "";
+		if (callback != null)
+		{
+			jsonReturned = callback + "(" + jsonReturned + ")";
+		}
+		
+		return Response.status(200).entity(jsonReturned).build();
 	}
 
 	@Path("/websites")
 	@GET
-	@Produces("application/json")
-	public Response getWebsites() throws JSONException {
+	@Produces(MediaType.APPLICATION_JSON)
+	public Response getWebsites(@QueryParam("callback") String callback) throws JSONException {
 		String pathToFile = getClass().getClassLoader().getResource("websites").getFile();
 		File file = new File(pathToFile);
 
@@ -69,8 +76,14 @@ public class PredictlyRestService {
 		{
 			json.put(website);
 		}
+		JSONObject jsonObj = new JSONObject();
+		jsonObj.put("model", json);
+		String jsonReturned = jsonObj.toString() + "";
+		if (callback != null)
+		{
+			jsonReturned = callback + "(" + jsonReturned + ")";
+		}
 		
-		String result = "@Produces(\"application/json\")" + json;
-		return Response.status(200).entity(result).build();
+		return Response.status(200).entity(jsonReturned).build();
 	}
 }

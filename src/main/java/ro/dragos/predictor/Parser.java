@@ -1,7 +1,6 @@
 package ro.dragos.predictor;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -28,7 +27,7 @@ public class Parser {
 		
 		String modelName = fileName + ".csv";
 		String pathToTrainFolder = getClass().getClassLoader()
-				.getResource("websites" + File.separator + fileName + File.separator).getFile();
+				.getResource("websites" + "/" + fileName + "/").getFile();
 
 		if(pathToTrainFolder == null || pathToTrainFolder.trim().isEmpty())
 			return parsedCsvItems;
@@ -50,9 +49,9 @@ public class Parser {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			// ignore exception
 		} catch (IOException e) {
-			e.printStackTrace();
+			// ignore exception
 		} finally {
 			if (br != null) {
 				try {
@@ -70,7 +69,7 @@ public class Parser {
 		
 		String modelName = fileName + "test.csv";
 		String pathToTrainFolder = getClass().getClassLoader()
-				.getResource("websites" + File.separator + fileName + File.separator).getFile();
+				.getResource("websites" + "/" + fileName + "/").getFile();
 
 		if(pathToTrainFolder == null || pathToTrainFolder.trim().isEmpty())
 			return parsedCsvItems;
@@ -92,9 +91,9 @@ public class Parser {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			// ignore exception
 		} catch (IOException e) {
-			e.printStackTrace();
+			// ignore exception
 		} finally {
 			if (br != null) {
 				try {
@@ -112,10 +111,11 @@ public class Parser {
 		
 		String parsedName = fileName + "pred.csv";
 		String pathToParsedtFolder = getClass().getClassLoader()
-				.getResource("websites" + File.separator + fileName + File.separator).getFile();
+				.getResource("websites" + "/" + fileName + "/").getFile();
 
 		if(pathToParsedtFolder == null || pathToParsedtFolder.trim().isEmpty())
 			return parsedCsvItems; 
+		
 		BufferedReader br = null;
 		String line = "";
 		String cvsSplitBy = ",";
@@ -132,9 +132,9 @@ public class Parser {
 				}
 			}
 		} catch (FileNotFoundException e) {
-			e.printStackTrace();
+			// ignore exception
 		} catch (IOException e) {
-			e.printStackTrace();
+			// ignore exception
 		} finally {
 			if (br != null) {
 				try {
@@ -146,13 +146,5 @@ public class Parser {
 		}
 
 		return parsedCsvItems;
-	}
-
-	public static void main(String[] args) {
-
-		Parser obj = Parser.getInstance();
-		System.out.println(obj.parseTrainModel("41"));
-		System.out.println(obj.parseTestModel("41"));
-		// System.out.println(obj.parsePredictedValues("41"));
 	}
 }

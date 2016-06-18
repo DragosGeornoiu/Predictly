@@ -5,7 +5,7 @@ import java.io.File;
 public class RPredictor {
 	// R must be installed on machine and path to Rscript.exe must be specified here
 	private final String SCRIPT_EXEC_PATH = "C:/Program Files/R/R-3.2.3/bin/Rscript.exe";
-	// path to R script used for predictions
+	// R script used for predictions
 	public static final String SCRIPT_NAME = "imp_predict.R";
 
 	private static RPredictor predictor;
@@ -30,12 +30,11 @@ public class RPredictor {
 			String pathToFile = getClass().getClassLoader().getResource(SCRIPT_NAME).getFile();
 			File file = new File(pathToFile);
 
-			String pathToModel = file.getParent() + File.separator + "websites" + File.separator + website
-					+ File.separator;
+			String pathToModel = file.getParent() + "/" + "websites" + "/" + website
+					+ "/";
 			pathToModel = pathToModel.replace("\\", "/");
 			Process child = Runtime.getRuntime().exec(SCRIPT_EXEC_PATH + " " + file.getAbsolutePath() + " "
 					+ pathToModel + " " + modelFileName + " " + testFileName + " " + predictionsFileName);
-
 			int code = child.waitFor();
 
 			if (code == 0) {
