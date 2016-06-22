@@ -206,7 +206,7 @@ function populateChartAndTable(website)
 		success: function(data) {
 			var i=1;
 			var length = Object.keys(data.model).length;
-			for(var i=1; i<length; i++)
+			for(var i=1; i<=length; i++)
 			{
 				chart += "{ \"date\": \"" + i +"\", \"x\":\"1\", \"real\": \"" + data.model[i] + "\"";
 				if(data.predictions[i] != undefined)
@@ -217,7 +217,7 @@ function populateChartAndTable(website)
 				}
 				
 				chart += "}";
-				if(i != length)
+				if(i != length + 1)
 				{
 					chart += ","
 				}
@@ -234,7 +234,8 @@ function populateChartAndTable(website)
 				"bFilter": true,
 				"bInfo": false,
 				"bAutoWidth": false,
-				"bDestroy": true
+				"bDestroy": true,
+				"pageLength": 20
 			});
 
 
@@ -248,16 +249,10 @@ function addRow(date, real, predicted)
 	var err = "-";
 	if(real != 0)
 	{
-		if(real > diff)
-		{
-			err = real / diff;
-		} else
-		{
-			err = diff / real;
-		}
-		
+		err = diff * 100 / real;
 		err = err.toFixed(2);
 	}
+	
 	$('#prediction_body').append('<tr><td>'+date+'</td><td>'+real+'</td><td>'+predicted+'</td><td>'+err+'</td></tr>');
 }
 
